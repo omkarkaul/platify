@@ -1,13 +1,16 @@
-async function search(plate) {
-    if (plate != '') {
-        const res = await fetch(`https://api.kiwiplates.nz/api//combination/${plate}/?vehicleTypeId=1`);
-        const json = await res.json();
-    };
-    // getAvailability(plate);
+async function getAllData(plate) {
+    const res = await fetch(`http://localhost:8080/plate`);
+    const json = await res.json();
+
+    updateDOM(json);
+};
+
+function updateDOM(data) {
+    console.log(data);
 }
 
 const searchElement = document.getElementById('plate-search');
 
 searchElement.addEventListener('input', () => {
-    search(searchElement.value);
+    getAllData(searchElement.value);
 })
