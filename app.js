@@ -16,7 +16,7 @@ app.get('/search', (req, res) => {
 
 app.get('/about', (req, res) => {
     console.log('serving about');
-    res.sendFile(path.join(__dirname+'/pages/search.html'));
+    res.sendFile(path.join(__dirname+'/pages/about.html'));
 });
 
 app.listen(3000, () => {
