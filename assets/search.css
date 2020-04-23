@@ -1,0 +1,20 @@
+#platify-search-container {
+    width: 100vw;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#platify-search {
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#platify-plate-data-container {
+    color: white;
+}
