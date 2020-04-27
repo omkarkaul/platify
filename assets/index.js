@@ -1,1 +1,1 @@
-location.assign('http://localhost:3000/search');
+location.assign(`${location.origin}/search`);

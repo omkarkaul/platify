@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    /* overflow: hidden; */
 }
 
 body {
@@ -17,6 +18,10 @@ body {
     background-color: #2A2B3E;
     height: 5em;
     color: white;
+}
+
+#nav-title {
+    display: flex;
 }
 
 #about-button {
