@@ -13,7 +13,10 @@
 		<div id = "navigation-bar">		
 			<nav class="navbar navbar-dark">
 				<div id = 'navbar-content'>
-					<h1>Platify</h1>
+					<div id = "nav-title">
+						<h1>Platify</h1>
+						<p>BETA</p>
+					</div>
 					<button id = "about-button" type="button" class="btn btn-outline-light">About</button>
 				</div>
 			</nav>
@@ -21,17 +24,35 @@
 
 		<div id = "platify-search-container">
 			<div id = "platify-search">
-				<p>Search for a plate:</p>
-            	<input id = 'plate-search' type="text" maxlength="6">
+				<h4>Search for a plate:</h4>
+				<input id = 'plate-search' type="text" maxlength="6">
+				<button id = "plate-search-button" type="button" class="btn btn-outline-light">Search</button>
 			</div>
 		</div>
 		
 		<div id = "platify-plate-data-container">
 			<div id = "platify-plate-data">
-				<h2 id = "plate">N/A</h2>
-				<p id = "plate-availability">Availability: False!</p>
+				<div id = "platify-data-table" class="container">
+					<div class="row">
+						<div id = 'header-col' class="col-sm" >
+							<h5><b>Data Type</b></h5>
+						</div>
+						<div id = 'header-col' class="col-sm">
+							<h5><b>Data</b></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div id = 'regular-col' class="col-sm" >
+							some data here
+						</div>
+						<div id = 'regular-col' class="col-sm">
+							some other data here
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+
 
 		<!-- add scripts here -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

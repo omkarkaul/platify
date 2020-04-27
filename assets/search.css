@@ -1,6 +1,6 @@
 #platify-search-container {
     width: 100vw;
-    height: 40%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,12 +9,55 @@
 }
 
 #platify-search {
-    width: 15em;
+    width: 18em;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+#plate-search-button {
+    margin-top: 0.5em;
+    height: 2.5em;
+}
+
 #platify-plate-data-container {
     color: white;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5em;
+}
+
+#platify-plate-data {
+    width: 65%;
+    padding: 0;
+    margin: 0;
+    display: flex;    
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    min-width: 10%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#header-col {
+    border:2px white solid;
+    background-color: grey;
+}
+
+#regular-col {
+    border: 1.25px white solid;
+    display: flex;
+    justify-content: center;
 }
