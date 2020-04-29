@@ -1,0 +1,16 @@
+#platify-about-container {
+    display: flex;
+    width: 100vw;
+    height: 50vh;
+    padding-top: 5%;
+    padding-left: 5%;
+    color: white;
+}
+
+#platify-about-title {
+    padding-bottom: 1%;
+}
+
+#platify-about-qna {
+    width: 85%;
+}

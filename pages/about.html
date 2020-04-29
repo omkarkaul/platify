@@ -17,13 +17,43 @@
 						<h1>Platify</h1>
 						<p>BETA</p>
 					</div>
-					<button id = "about-button" type="button" class="btn btn-outline-light">About</button>
+					<button id = "search-button" type="button" class="btn btn-outline-light">Search</button>
 				</div>
 			</nav>
 		</div>
 
-		<div id = "platify-about-container">
-            put about stuff here
+		<div id = "platify-about-container">			
+			<div id = "platify-about-content">
+				<h1 id = "platify-about-title">About</h1>
+				
+				<div id = "platify-about-qna">
+					<dl>
+						<dt>Why'd you build this?</dt>
+						<dd>
+							<s>Cos I felt like it </s><br>
+							So that I could practice building a reverse proxy and doing static rendering in node, also so I would have a number plate lookup tool
+							that had the functionality of Kiwiplates and Carjam combined. Obviously a lot of functionality still needs to be implemented, and I have a trillion ideas about how I could make this really interesting, but it solves 
+							the problem I was having for now
+						</dd>
+						<br>
+						<dt>How does it work?</dt>
+						<dd>
+							The front end fetches plate data via a reverse proxy. The proxy fetches plate data from some publicly exposed API's, does some fiddling, 
+							and then returns it to the front end. We also have the luxury of being able to lookup confidential plates that NZTA requests blocked access to from 
+							conventional number plate lookups via services like Carjam
+						</dd>
+						<br>
+						<dt>Where's the source?</dt>
+						<dd>
+							Right <a href = "https://github.com/omkarkaul/platify"> here!</a><br>
+							Reverse proxy source <a href="https://github.com/omkarkaul/platify-reverse-proxy"> here!</a>
+							<br>
+							<br>
+							File issues via github, or contact me directly, if you find bugs or want something changed.
+						</dd>
+					</dl>
+				</div>
+			</div>
         </div>
 
 		<!-- add scripts here -->
