@@ -115,10 +115,8 @@ const plateSearchButton = document.getElementById('plate-search-button');
 const dataTable = document.getElementById('platify-data-table');
 dataTable.hidden = true;
 
-searchElement.addEventListener('input', () => {
-    plateValue = searchElement.value;
-});
 searchElement.addEventListener('keypress', async (e) => {
+    plateValue = searchElement.value;
     dataTable.hidden = true;
     if (e.keyCode == 13 && plateValue != '') {
         plateSearchButton.disabled = true;
@@ -131,6 +129,7 @@ searchElement.addEventListener('keypress', async (e) => {
 }); 
 
 plateSearchButton.addEventListener('click', async () => {
+    plateValue = searchElement.value;
     dataTable.hidden = true;
     if (plateValue != '') {
         plateSearchButton.disabled = true;
