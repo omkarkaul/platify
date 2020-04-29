@@ -19,6 +19,11 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname+'/pages/about.html'));
 });
 
+app.get('*', (req, res) => {
+    console.log('serving root via catch-all route');
+    res.sendFile(path.join(__dirname+'/pages/404.html'));
+});
+
 app.listen(3000, () => {
     console.log('listening on 3000')
 });
