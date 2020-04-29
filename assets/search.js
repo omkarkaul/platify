@@ -1,7 +1,8 @@
+/** fetches data from reverse proxy using user entered plate */
 async function getAllData(plate) {
     const res = await fetch(`https://platify-proxy.now.sh/api?plate=${plate}`);
     const json = await res.json();
-    console.log(json)
+
     return json;
 };
 
@@ -19,6 +20,7 @@ function clearDataTable() {
     };
 }
 
+/** builds a hashset of keys for O(1) lookup of banned data types */
 function getBannedKeys() {
     const bannedKeys = new Set();
 
@@ -37,6 +39,7 @@ function getBannedKeys() {
     return bannedKeys;
 }
 
+/** builds a row div element for appending to data table */
 function buildRowElement(key, value) {
     const row = document.createElement("div")
     row.className = "row"
@@ -47,7 +50,7 @@ function buildRowElement(key, value) {
     data.className = "col-sm"
     data.id = "regular-col"
     
-    key = key.replace(/_/g, " ");
+    key = key.replace(/_/g, " "); // replace all underscores with spaces
 
     dataType.innerHTML = `<b>${key.toUpperCase()}</b>`;
     data.innerHTML = value;
@@ -60,35 +63,53 @@ function buildRowElement(key, value) {
 
 /** updating platify DOM! */
 function updateDOM(json) {
-    dataTable.hidden = false;
     const bannedKeys = getBannedKeys();
-    
+    console.log(json)
     if (json.status == 200) {
-        const plateAvailabile = json['availability']
-        
-        if (!plateAvailabile) {
+        const plateAvailabile = json['availability'];
+        const content = json['content'];
+        const errorCode = json['content']['error_code']
+
+        if (!plateAvailabile && 
+            (content !== null || content !== undefined) && 
+            (errorCode !== 40 && errorCode !== 30)) {
+            // plate is not available and plate is registered to a car
+
+            dataTable.hidden = false;
+            
             for (let key of Object.keys(json.content)) {
                 if (!bannedKeys.has(key)) {
                     const row = buildRowElement(key, json.content[key])
                     dataTable.appendChild(row)
                 }
             }
+        } else if (errorCode === 40) {
+            // invalid plate            
+            alert(`${plateValue} is not a valid plate!`)
+            searchElement.value = '';
+            plateValue = '';
+        } else {
+            // plate is available (i.e. plate is not registered to a car)
+            alert(`${plateValue} is not registered!`)
+            searchElement.value = '';
+            plateValue = '';
         }
         
-    } else if (json.content == null) {
-        console.log('Cannot search this plate!');
-    } 
-    
-    else {
-        serviceUnavailable();
+    } else {
+        serviceUnavailable('Search service is unavailable! :( \nFile an issue on github.', json)
     }
 }
 
-function serviceUnavailable(json) {
-    console.log('Service unavailable!')
+/** called when reverse proxy sends a bad response */
+function serviceUnavailable(message, json) {
+    //TODO
+    alert(message)
+    searchElement.value = '';
 }
 
-let plateValue;
+// Listeners and variables ----------------------------------------
+
+let plateValue = '';
 const searchElement = document.getElementById('plate-search');
 const plateSearchButton = document.getElementById('plate-search-button');
 const dataTable = document.getElementById('platify-data-table');
@@ -99,7 +120,7 @@ searchElement.addEventListener('input', () => {
 });
 searchElement.addEventListener('keypress', async (e) => {
     dataTable.hidden = true;
-    if (e.keyCode == 13) {
+    if (e.keyCode == 13 && plateValue != '') {
         plateSearchButton.disabled = true;
         const data = await getAllData(plateValue);
         plateSearchButton.disabled = false;
@@ -111,15 +132,18 @@ searchElement.addEventListener('keypress', async (e) => {
 
 plateSearchButton.addEventListener('click', async () => {
     dataTable.hidden = true;
-    plateSearchButton.disabled = true;
-    const data = await getAllData(plateValue);
-    plateSearchButton.disabled = false;
+    if (plateValue != '') {
+        plateSearchButton.disabled = true;
+        const data = await getAllData(plateValue);
+        plateSearchButton.disabled = false;
 
-    clearDataTable();
-    updateDOM(data);
+        clearDataTable();
+        updateDOM(data);
+    }
 });
 
 const aboutButton = document.getElementById('about-button');
 aboutButton.addEventListener('click', () => {
+    dataTable.hidden = true;
     location.assign(`${location.origin}/about`)
 });
