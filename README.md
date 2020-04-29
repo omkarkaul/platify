@@ -10,5 +10,6 @@ this is a basic lookup tool for number plates in new zealand
 - [ ] build about page
 - [ ] build app file (file server) to be compliant with zeit's weird lambda stuff, that they don't document properly, for deployment purposes
 - [ ] improve the styling and UX
+- [ ] mobile styling
 - [ ] continue TDD
 
