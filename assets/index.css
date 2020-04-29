@@ -49,3 +49,15 @@ body {
     width: 15em;
     height: 15em;
 }
+
+/* ----- 404 styling ----- */
+
+#notFound {
+    color: white;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
